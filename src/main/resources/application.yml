@@ -2,9 +2,9 @@ spring:
   datasource:
     initialization-mode: never
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/m22tup_schema
-    username: m22tup_user
-    password: a4059027
+    url: jdbc:mysql://svc.sel3.cloudtype.app:32439/testdb
+    username: root
+    password: root
   jpa:
     hibernate:
       ddl-auto: none
