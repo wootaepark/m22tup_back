@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Place</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>Create New Place</h2>
+
+<form id="placeForm" action="http://localhost:8080/create" method="post">
+    <label for="type">Type:</label>
+    <input type="number" id="type" name="type" required><br>
+
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required><br>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required><br>
+
+    <label for="phone">Phone:</label>
+    <input type="text" id="phone" name="phone" required><br>
+
+    <label for="url">URL:</label>
+    <input type="url" id="url" name="url"><br>
+
+    <label for="x">X 좌표:</label>
+    <input type="number" step="0.00001" id="x" name="x" required><br>
+
+    <label for="y">Y 좌표:</label>
+    <input type="number" step="0.00001" id="y" name="y" required><br>
+
+    <label for="imgUrl">Image URL:</label>
+    <input type="url" id="imgUrl" name="imgUrl"><br>
+
+    <button type="button" onclick="submitForm()">Create Place</button>
+</form>
+<p id="responseMessage"></p>
+<br>
+<a href="/calculate">현재 위치와 비교하기</a>
+
+<script>
+    function submitForm() {
+        var formData = {
+            type: parseInt(document.getElementsByName("type")[0].value),
+            location: document.getElementsByName("location")[0].value,
+            name: document.getElementsByName("name")[0].value,
+            address: document.getElementsByName("address")[0].value,
+            phone: document.getElementsByName("phone")[0].value,
+            url: document.getElementsByName("url")[0].value,
+            x: parseFloat(document.getElementsByName("x")[0].value),
+            y: parseFloat(document.getElementsByName("y")[0].value),
+            imgUrl: document.getElementsByName("imgUrl")[0].value
+        };
+
+        fetch('/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.text())
+        .then(message => {
+            document.getElementById("responseMessage").innerText = message;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById("responseMessage").innerText = "Failed to create place";
+        });
+    }
+</script>
+</body>
+</html>
