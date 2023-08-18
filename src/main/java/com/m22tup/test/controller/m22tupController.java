@@ -38,9 +38,9 @@ public class m22tupController {
 
 
     @GetMapping(value = "/compare", consumes = MediaType.APPLICATION_JSON_VALUE) // 동일한 데이터가 있는지
-    public Map<String, Object> getJsonData(@RequestParam(name = "x") Double x, @RequestParam(name = "y") Double y) {
+    public Map<String, Object> getJsonData(@RequestParam(name = "x") Double x, @RequestParam(name = "y") Double y, @RequestParam(name="type") Integer type) {
         Map<String, Object> jsonData = new HashMap<>();
-        List<m22tupEntity> entityList = service.compareEntities(x, y);
+        List<m22tupEntity> entityList = service.compareEntities(x, y,type);
 
         jsonData.put("entityList", entityList);
         return jsonData;
@@ -57,14 +57,15 @@ public class m22tupController {
     public Map<String,Object> receiveLocation(@RequestBody JsonNode locationData) {
         Double x = locationData.get("x").asDouble();
         Double y = locationData.get("y").asDouble();
+        Integer type = locationData.get("place").asInt();
 
-        // json 데이터의 위,경도 값을 double 형태로 치환함
+        // json 데이터의 위,경도 값을 double 형태로 치환함, 타입 값 포함
         Map<String, Object> jsonList = new HashMap<>();
-        List<m22tupEntity> entityList = service.compareEntities(x,y);
+        List<m22tupEntity> entityList = service.compareEntities(x,y,type);
 
         jsonList.put("ServiceList",entityList);
 
-        return jsonList;
+        return  jsonList;
 
     } // json 데이터로 위도, 경도를 받고 범위 내에 있는 모든 시설 json 반환
 

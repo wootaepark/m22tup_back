@@ -88,7 +88,7 @@ public class m22tupService {
 
     }
 
-    public List<m22tupEntity> compareEntities(Double x, Double y) { // 해당 위도, 경도 값을 주면 그 안에 있는 모든 가게 보여주기
+    public List<m22tupEntity> compareEntities(Double x, Double y,Integer type) { // 해당 위도, 경도 값을 주면 그 안에 있는 모든 가게 보여주기
         List<m22tupEntity> allEntities = repository.findAll();
 
         // 결과를 저장할 리스트 생성
@@ -96,7 +96,7 @@ public class m22tupService {
 
         for (m22tupEntity entity : allEntities) {
 
-            if (Math.abs(entity.getX()-x)<2 && Math.abs(entity.getY()-y)<2) {
+            if (Math.abs(entity.getX()-x)<2 && Math.abs(entity.getY()-y)<2&&entity.getType()==type) {
                 matchingEntities.add(entity);
             }
         }
