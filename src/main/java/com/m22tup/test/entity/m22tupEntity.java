@@ -8,6 +8,8 @@ public class m22tupEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // pk 값, 필수
+
+
     private Integer type;// 공공회의실, 카페, 민간회의실, 필수
     private String location; // 세종시
     private String name; // 업체명
@@ -28,6 +30,12 @@ public class m22tupEntity {
     private Double x;// x좌표, 필수
     private Double y;// y좌표 ,필수
     private String imgUrl;// 이미지 주소
+
+
+
+
+
+
 
     public String getImgUrl() {
         return imgUrl;

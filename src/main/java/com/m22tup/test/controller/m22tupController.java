@@ -1,8 +1,10 @@
 package com.m22tup.test.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.m22tup.test.entity.UserEntity;
 import com.m22tup.test.entity.m22tupEntity;
 import com.m22tup.test.repository.m22tupRepository;
+import com.m22tup.test.service.UserService;
 import com.m22tup.test.service.m22tupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,9 +25,12 @@ import java.util.Map;
 public class m22tupController {
     @Autowired
     private m22tupService service;
+
     private m22tupRepository repository;
     private m22tupEntity entity;
-    
+    private UserEntity userEntity;
+
+
 
 
 

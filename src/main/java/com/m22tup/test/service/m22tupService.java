@@ -40,6 +40,10 @@ public class m22tupService {
         return repository.findAll();
     }
 
+
+    public m22tupEntity getPlaceById(Long PlaceId) {
+        return repository.findById(PlaceId).orElseThrow(() -> new RuntimeException("Place not found with ID: " + PlaceId));
+    }
     public m22tupEntity updatePlace(m22tupEntity entity) {
 
         entity.setPhone("010-2222-2222");
